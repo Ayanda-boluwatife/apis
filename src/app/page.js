@@ -12,9 +12,9 @@ export default function Home() {
   };
 
   return (
-    <div className=" w-full p-4">
+    <div className=" w-full bg-white p-4">
       <h1 className="text-3xl font-semibold text-center mb-8">API Interface</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="">
         <ApiList showAPIDetails={showAPIDetails} />
         {selectedAPI && <ApiDetails api={selectedAPI} />}
       </div>

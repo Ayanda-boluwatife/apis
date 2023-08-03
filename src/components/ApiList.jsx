@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-const apiUrl = 'https://api.publicapis.org/entries'; // Replace this with the actual API endpoint
+const apiUrl = 'https://api.publicapis.org/entries';
 
 const ApiList = ({ showAPIDetails }) => {
   const [apiData, setApiData] = useState([]);
@@ -22,23 +22,19 @@ const ApiList = ({ showAPIDetails }) => {
     fetchAPIs();
   }, []);
 
-  // Constants for pagination
   const itemsPerPage = 50;
   const totalPages = Math.ceil(apiData.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Function to handle pagination click
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Function to handle search input
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
-    setCurrentPage(1); // Reset to the first page when searching
+    setCurrentPage(1); 
   };
 
-  // Function to get the range of page numbers to display
   const getPageRange = () => {
     const totalButtons = 5;
     const middleButton = Math.floor(totalButtons / 2);
@@ -59,14 +55,12 @@ const ApiList = ({ showAPIDetails }) => {
     return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   };
 
-  // Filter the API data based on the search query
   const filteredData = apiData.filter(
     (api) =>
       api.API.toLowerCase().includes(searchQuery.toLowerCase()) ||
       api.Description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Function to handle pagination and display 50 items at a time
   const getPaginatedData = () => {
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
